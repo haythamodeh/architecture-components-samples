@@ -21,6 +21,8 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
+
 import com.example.android.persistence.db.entity.ProductEntity;
 
 import java.util.List;
@@ -32,6 +34,9 @@ public interface ProductDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<ProductEntity> products);
+
+    @Query("UPDATE products SET rating=:rating WHERE id = :id")
+    void update(int rating, int id);
 
     @Query("select * from products where id = :productId")
     LiveData<ProductEntity> loadProduct(int productId);

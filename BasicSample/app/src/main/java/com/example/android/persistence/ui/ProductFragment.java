@@ -20,16 +20,26 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.android.persistence.R;
 import com.example.android.persistence.databinding.ProductFragmentBinding;
+import com.example.android.persistence.db.dao.ProductDao;
+import com.example.android.persistence.db.entity.ProductEntity;
+import com.example.android.persistence.model.Product;
 import com.example.android.persistence.viewmodel.ProductViewModel;
+
+import java.util.List;
 
 public class ProductFragment extends Fragment {
 
@@ -49,12 +59,16 @@ public class ProductFragment extends Fragment {
         // Create and set the adapter for the RecyclerView.
         mCommentAdapter = new CommentAdapter(mCommentClickCallback);
         mBinding.commentList.setAdapter(mCommentAdapter);
+
         return mBinding.getRoot();
     }
 
     private final CommentClickCallback mCommentClickCallback = comment -> {
         // no-op
     };
+    public void changeRating(View v) {
+
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -68,6 +82,48 @@ public class ProductFragment extends Fragment {
         mBinding.setProductViewModel(model);
 
         subscribeToModel(model);
+        Button btn = (Button) view.findViewById(R.id.editRatingBtn);
+        EditText ratingEditText = view.findViewById(R.id.editRating);
+
+        btn.setOnClickListener((View v) -> {
+            String ratingText = ratingEditText.getText().toString();
+            int rating = Integer.parseInt(ratingText);
+            //Toast.makeText(getContext(), ratingText, Toast.LENGTH_SHORT).show();
+//            ProductEntity p = new ProductEntity();
+//            ProductDao pp = new ProductDao() {
+//                @Override
+//                public LiveData<List<ProductEntity>> loadAllProducts() {
+//                    return null;
+//                }
+//
+//                @Override
+//                public void insertAll(List<ProductEntity> products) {
+//
+//                }
+//
+//                @Override
+//                public void update(int rating, int id) {
+//
+//                }
+//
+//                @Override
+//                public LiveData<ProductEntity> loadProduct(int productId) {
+//                    return null;
+//                }
+//
+//                @Override
+//                public ProductEntity loadProductSync(int productId) {
+//                    return null;
+//                }
+//
+//                @Override
+//                public LiveData<List<ProductEntity>> searchAllProducts(String query) {
+//                    return null;
+//                }
+//            };
+//            //requireArguments().getInt(KEY_PRODUCT_ID)
+//            pp.update(rating, p.getId());
+        });
     }
 
     private void subscribeToModel(final ProductViewModel model) {
