@@ -49,6 +49,7 @@ public class DataGenerator {
                 ProductEntity product = new ProductEntity();
                 product.setName(FIRST[i] + " " + SECOND[j]);
                 product.setDescription(product.getName() + " " + DESCRIPTION[j]);
+                product.setRating(rnd.nextInt(11));
                 product.setPrice(rnd.nextInt(240));
                 product.setId(FIRST.length * i + j + 1);
                 products.add(product);

@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "3e1095fcd74edb0edc506f32734f3379",
+    "identityHash": "2490e6ee3da9855efde6aeb115fe4750",
     "entities": [
       {
         "tableName": "products",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT, `description` TEXT, `price` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT, `description` TEXT, `price` INTEGER NOT NULL, `rating` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -29,6 +29,12 @@
           {
             "fieldPath": "price",
             "columnName": "price",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rating",
+            "columnName": "rating",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -125,6 +131,7 @@
             "columnNames": [
               "productId"
             ],
+            "orders": [],
             "createSql": "CREATE INDEX IF NOT EXISTS `index_comments_productId` ON `${TABLE_NAME}` (`productId`)"
           }
         ],
@@ -146,7 +153,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3e1095fcd74edb0edc506f32734f3379')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2490e6ee3da9855efde6aeb115fe4750')"
     ]
   }
 }
