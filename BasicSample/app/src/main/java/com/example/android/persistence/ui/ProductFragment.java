@@ -34,6 +34,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.android.persistence.R;
 import com.example.android.persistence.databinding.ProductFragmentBinding;
+import com.example.android.persistence.db.AppDatabase;
 import com.example.android.persistence.db.dao.ProductDao;
 import com.example.android.persistence.db.entity.ProductEntity;
 import com.example.android.persistence.model.Product;
@@ -48,6 +49,8 @@ public class ProductFragment extends Fragment {
     private ProductFragmentBinding mBinding;
 
     private CommentAdapter mCommentAdapter;
+
+    private ProductViewModel mProductViewModel;
 
     @Nullable
     @Override
@@ -88,41 +91,10 @@ public class ProductFragment extends Fragment {
         btn.setOnClickListener((View v) -> {
             String ratingText = ratingEditText.getText().toString();
             int rating = Integer.parseInt(ratingText);
-            //Toast.makeText(getContext(), ratingText, Toast.LENGTH_SHORT).show();
-//            ProductEntity p = new ProductEntity();
-//            ProductDao pp = new ProductDao() {
-//                @Override
-//                public LiveData<List<ProductEntity>> loadAllProducts() {
-//                    return null;
-//                }
-//
-//                @Override
-//                public void insertAll(List<ProductEntity> products) {
-//
-//                }
-//
-//                @Override
-//                public void update(int rating, int id) {
-//
-//                }
-//
-//                @Override
-//                public LiveData<ProductEntity> loadProduct(int productId) {
-//                    return null;
-//                }
-//
-//                @Override
-//                public ProductEntity loadProductSync(int productId) {
-//                    return null;
-//                }
-//
-//                @Override
-//                public LiveData<List<ProductEntity>> searchAllProducts(String query) {
-//                    return null;
-//                }
-//            };
-//            //requireArguments().getInt(KEY_PRODUCT_ID)
-//            pp.update(rating, p.getId());
+            int id = requireArguments().getInt(KEY_PRODUCT_ID);
+
+            //requireArguments().getInt(KEY_PRODUCT_ID)
+
         });
     }
 

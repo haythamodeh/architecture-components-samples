@@ -59,4 +59,8 @@ public class DataRepository {
     public LiveData<List<ProductEntity>> searchProducts(String query) {
         return mDatabase.productDao().searchAllProducts(query);
     }
+
+    public void update(int rating, int id) {
+        mDatabase.productDao().update(rating, id);
+    }
 }
